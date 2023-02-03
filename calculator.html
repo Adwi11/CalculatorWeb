@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Calculator Web
+    </title>
+    <link rel="stylesheet" href="calculator.css">
+  </head>
+
+  <body>
+    <h1 class="heading">CALCULATOR</h1>
+    <div class="calculator">
+      <input type="text" class="display" placeholder="0">
+      <div class="buttons">
+        <button id="1">1</button>
+        <button id="2">2</button>
+        <button id="3">3</button>
+        <button id="+">+</button>
+        <button id="4">4</button>
+        <button id="5">5</button>
+        <button id="6">6</button>
+        <button id="-">-</button>
+        <button id="7">7</button>
+        <button id="8">8</button>
+        <button id="9">9</button>
+        <button id="x">x</button>
+        <button id="clear">C</button>
+        <button id="0">0</button>
+        <button id="=">=</button>
+        <button>/</button>
+      </div>
+    </div>
+    <script>
+      const add = function(a,b) {
+  return a+b
+	
+};
+
+ function subtract(a,b) {
+  
+  return a-b
+	
+};
+
+const multiply = function(a,b) {
+  return a*b
+	
+};
+
+const divide =  function(a,b){
+  return a/b
+}
+
+function operator(opr,a,b){
+  let res=0;
+  
+  if (opr==='+'){
+    res=add(a,b);
+  }
+
+  else if (opr==='-'){
+    res=subtract(a,b);
+    
+  }
+
+  else if (opr==='x'){
+    res=multiply(a,b);
+  }
+
+  else {
+    res=divide(a,b);
+  }
+  return res
+}
+let num=0;
+let num1,num2=0;
+let opt='';
+let ans=0;
+
+const key=document.querySelectorAll('.buttons')
+key.forEach(keys => keys.addEventListener('click',function(e){
+  const display=document.querySelector('.display');
+  
+  if(e.target.id==='clear'){
+    display.value='0';
+  }
+  else if(e.target.id==='+'||e.target.id==='-'||e.target.id==='x'||e.target.id==='/'){
+    num1=num;
+    opt=e.target.id;
+    
+    display.value='0';
+  }
+  
+  else if (e.target.id==='='){
+    num2=num;
+    ans=operator(opt,num1,num2);
+    display.value=ans.toString();
+    console.log('in this if');
+    console.log(ans)
+  } 
+  
+  else if (display.value!='0' && display.value!='+' && display.value!='-' && display.value!='x' && display.value!='/'){
+    display.value+=e.target.id;
+    
+  }
+  
+  else{
+  display.value= e.target.id;
+  }
+  num=Number(display.value);
+  
+}));
+
+
+    </script>
+
+    
+  </body>
+</html>
